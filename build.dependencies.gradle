@@ -39,8 +39,11 @@ dependencies {
     implementation 'com.pedropathing:ftc:2.1.1'
     implementation 'com.pedropathing:telemetry:1.0.0'
 
+    //Marrow
+    implementation 'com.skeletonarmyftc.marrow:core:1.1.0'
+
     //Sloth + Panels
     implementation("com.bylazar.sloth:fullpanels:0.2.4+1.0.12")
     implementation("dev.frozenmilk.sinister:Sloth:0.2.4")
-    
+
 }
