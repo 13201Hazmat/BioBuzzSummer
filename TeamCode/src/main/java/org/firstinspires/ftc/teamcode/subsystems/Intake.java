@@ -4,6 +4,7 @@ import com.pedropathing.ivy.Command;
 import static com.pedropathing.ivy.commands.Commands.*;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.skeletonarmy.marrow.ftclib.RetryCommand;
 
 public class Intake {
     private DcMotorEx intakeMotor;
@@ -47,7 +48,9 @@ public class Intake {
         else if(intakeState == IntakeState.REVERSE){
             intakePower = reverseSpeed;
         }
-        intakePower = offSpeed;
+        else {
+            intakePower = offSpeed;
+        }
     }
 
     public boolean isAtPower(){
