@@ -3,13 +3,12 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.pedropathing.ivy.Command;
 import static com.pedropathing.ivy.commands.Commands.*;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.skeletonarmy.marrow.ftclib.RetryCommand;
 
 public class Intake {
     private DcMotorEx intakeMotor;
     private IntakeState intakeState;
-
     public enum IntakeState {
         FORWARD,
         REVERSE,
@@ -40,8 +39,7 @@ public class Intake {
     public void setState(IntakeState intakeState){
         this.intakeState = intakeState;
     }
-
-    public void changePower(){
+    private void changePower(){
         if(intakeState == IntakeState.FORWARD){
             intakePower = forwardSpeed;
         }
@@ -53,7 +51,7 @@ public class Intake {
         }
     }
 
-    public boolean isAtPower(){
+    private boolean isAtPower(){
         if(intakeState == IntakeState.FORWARD && intakePower == forwardSpeed){
             isOn = true;
             return true;

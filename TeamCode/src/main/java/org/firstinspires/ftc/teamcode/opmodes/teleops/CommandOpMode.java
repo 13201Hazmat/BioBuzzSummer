@@ -4,7 +4,7 @@ import com.pedropathing.ivy.Command;
 import com.pedropathing.ivy.Scheduler;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-public abstract class CommandOpMode extends OpMode {
+public class CommandOpMode extends OpMode {
 
     public void reset() {
         Scheduler.reset();

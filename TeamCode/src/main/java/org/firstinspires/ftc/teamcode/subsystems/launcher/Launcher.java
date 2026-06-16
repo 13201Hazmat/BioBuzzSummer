@@ -4,6 +4,7 @@ import static com.pedropathing.ivy.commands.Commands.*;
 import static com.pedropathing.ivy.groups.Groups.*;
 
 import com.pedropathing.ivy.Command;
+import com.pedropathing.ivy.behaviors.EndCondition;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -31,6 +32,10 @@ public class Launcher {
         launcherState = LauncherState.IDLE;
     }
 
+    public double getCurrentVelocity(){
+        return currentVelocity;
+    }
+
     public boolean atTargetVelocity(double targetVelocity){
         return Math.abs(targetVelocity - currentVelocity) <= threshold;
     }
@@ -45,9 +50,7 @@ public class Launcher {
                 .requiring(rightLauncherMotor, leftLauncherMotor);
     }
 
-    public double getCurrentVelocity(){
-        return currentVelocity;
-    }
+
 
     public Command stopLauncher(){
         return Command.build()
