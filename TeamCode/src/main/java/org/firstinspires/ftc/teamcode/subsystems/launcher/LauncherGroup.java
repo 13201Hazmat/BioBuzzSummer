@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems.launcher;
 
+import static com.pedropathing.ivy.commands.Commands.*;
 import static com.pedropathing.ivy.groups.Groups.*;
 
 import com.pedropathing.ivy.Command;
@@ -23,9 +24,12 @@ public class LauncherGroup {
     public Command cycle(){
         return sequential(
                 launcherGate.openLauncherGate(),
-                spindexer.openTriggerServo(),
+                spindexer.openTriggers(),
                 launcher.setVelocity(1000),
-                spindexer.spinChambers(6)
+                spindexer.spinChambers(6),
+                waitMs(300),
+                spindexer.closeTriggers(),
+                launcherGate.closeLauncherGate()
         );
     }
 
