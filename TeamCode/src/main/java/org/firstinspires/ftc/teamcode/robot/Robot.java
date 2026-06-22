@@ -11,10 +11,10 @@ import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherGroup;
 import org.firstinspires.ftc.teamcode.subsystems.launcher.LauncherHood;
 
 public class Robot {
-    public final Intake intake;
-    public final LauncherGroup launcherGroup;
-    public final Turret turret;
-    public Alliance alliance;
+    private final Intake intake;
+    private final LauncherGroup launcherGroup;
+    private final Turret turret;
+    private Alliance alliance;
 
     public Robot(HardwareMap hardwareMap, Alliance alliance) {
         this.intake = new Intake(hardwareMap);
@@ -23,5 +23,25 @@ public class Robot {
 
         this.turret = new Turret(hardwareMap, Alliance.BLUE);
 
+    }
+
+    public Intake getIntake(){
+        return intake;
+    }
+
+    public LauncherGroup getLauncherGroup(){
+        return launcherGroup;
+    }
+
+    public Turret getTurret(){
+        return turret;
+    }
+
+    public Alliance getAlliance(){
+        return alliance;
+    }
+
+    public void setAlliance(Alliance newAlliance){
+        this.alliance = newAlliance;
     }
 }

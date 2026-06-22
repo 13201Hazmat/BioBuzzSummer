@@ -38,17 +38,17 @@ public class Spindexer {
     }
 
     private boolean isAtCorrectPosition(){
-        return spindexerMotor.getCurrentPosition() % ONE_CHAMBER_DISTANCE == 0 && magneticSensor.getState();
+        int current = spindexerMotor.getCurrentPosition();
+        return !spindexerMotor.isBusy() && magneticSensor.getState();
     }
 
     public Command spinChambers(int numberTimes){
         return Command.build()
-                .setExecute(() -> spindexerMotor.setTargetPosition(numberTimes * ONE_CHAMBER_DISTANCE))
+                .setStart(() -> {
+                    int target = spindexerMotor.getCurrentPosition() + (numberTimes * ONE_CHAMBER_DISTANCE);
+                    spindexerMotor.setTargetPosition(target);
+                })
                 .setDone(this::isAtCorrectPosition);
-    }
-
-    public boolean isAtCorrectPosition(double targetPosition){
-        return rightTriggerServo.getPosition() - targetPosition <= 0.067;
     }
 
     private boolean isLeftTriggerAtPosition(double targetPosition){
@@ -61,19 +61,18 @@ public class Spindexer {
 
     private Command setRightTriggerPosition(double targetPosition){
         return Command.build()
-                .setExecute(() -> rightTriggerServo.setPosition(targetPosition))
+                .setStart(() -> rightTriggerServo.setPosition(targetPosition))
                 .setDone(() -> isRightTriggerAtPosition(targetPosition));
     }
 
     private Command setLeftTriggerPosition(double targetPosition){
         return Command.build()
-                .setExecute(() -> leftTriggerServo.setPosition(targetPosition))
+                .setStart(() -> leftTriggerServo.setPosition(targetPosition))
                 .setDone(() -> isLeftTriggerAtPosition(targetPosition));
     }
 
     public Command setTriggerPositions(double left, double right){
-        return Command.build()
-                .setExecute(() -> setRightTriggerPosition(right).with(setLeftTriggerPosition(left)));
+        return setRightTriggerPosition(right).with(setLeftTriggerPosition(left));
     }
 
     public Command openTriggers(){

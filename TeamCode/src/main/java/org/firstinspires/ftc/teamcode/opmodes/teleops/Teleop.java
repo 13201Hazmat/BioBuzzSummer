@@ -24,9 +24,9 @@ public class Teleop extends CommandOpMode {
     }
 
     public void onPromptsComplete() {
-        robot.alliance = prompter.get("alliance");
+        robot.setAlliance(prompter.get("alliance"));
 
-        telemetry.addData("Selected Alliance", robot.alliance);
+        telemetry.addData("Selected Alliance", robot.getAlliance());
         telemetry.update();
     }
 
@@ -39,13 +39,14 @@ public class Teleop extends CommandOpMode {
     public void loop() {
         super.loop();
 
-        robot.launcherGroup.getLauncher().periodic();
+        robot.getLauncherGroup().getLauncher().periodic();
+        robot.getTurret().periodic();
 
         if(gamepad1.rightBumperWasPressed()){
-            schedule(robot.intake.spinIntake(Intake.IntakeState.FORWARD));
+            schedule(robot.getIntake().spinIntake(Intake.IntakeState.FORWARD));
         }
         if(gamepad1.leftBumperWasReleased()){
-            schedule(robot.intake.spinIntake(Intake.IntakeState.OFF));
+            schedule(robot.getIntake().spinIntake(Intake.IntakeState.OFF));
         }
 //        if(gamepad1.dpadLeftWasPressed()){
 //            robot.turret.setTargetPosition(-1);
@@ -54,12 +55,12 @@ public class Teleop extends CommandOpMode {
 //            robot.turret.setTargetPosition(1);
 //        }
         if(gamepad1.rightTriggerWasPressed()){
-            schedule(robot.launcherGroup.cycle());
+            schedule(robot.getLauncherGroup().cycle());
         }
 
-        telemetry.addData("Launcher Velocity", robot.launcherGroup.getLauncher().getCurrentVelocity());
-        telemetry.addData("Intake State", robot.intake.getState());
-        telemetry.addData("Alliance", robot.alliance);
+        telemetry.addData("Launcher Velocity", robot.getLauncherGroup().getLauncher().getCurrentVelocity());
+        telemetry.addData("Intake State", robot.getIntake().getState());
+        telemetry.addData("Alliance", robot.getAlliance());
         telemetry.update();
     }
 

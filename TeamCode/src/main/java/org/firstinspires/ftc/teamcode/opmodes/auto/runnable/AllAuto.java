@@ -35,10 +35,10 @@ public class AllAuto extends CommandOpMode {
     }
 
     public void onPromptsComplete() {
-        robot.alliance = prompter.get("alliance");
+        robot.setAlliance(prompter.get("alliance"));
         numberBalls = prompter.get("numberballs");
 
-        telemetry.addData("Selected Alliance", robot.alliance);
+        telemetry.addData("Selected Alliance", robot.getAlliance());
         telemetry.update();
     }
 
@@ -51,12 +51,12 @@ public class AllAuto extends CommandOpMode {
     public void loop() {
         super.loop();
 
-        robot.launcher.periodic();
+        robot.getLauncherGroup().getLauncher().periodic();
 
 
-        telemetry.addData("Launcher Velocity", robot.launcher.getCurrentVelocity());
-        telemetry.addData("Intake State", robot.intake.getState());
-        telemetry.addData("Alliance", robot.alliance);
+        telemetry.addData("Launcher Velocity", robot.getLauncherGroup().getLauncher().getCurrentVelocity());
+        telemetry.addData("Intake State", robot.getIntake().getState());
+        telemetry.addData("Alliance", robot.getAlliance());
         telemetry.update();
     }
 

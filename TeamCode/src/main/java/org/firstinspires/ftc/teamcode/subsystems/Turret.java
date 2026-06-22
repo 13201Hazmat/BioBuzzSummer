@@ -67,6 +67,7 @@ public class Turret {
 
     public void periodic(){
         isAtCorrectTurretPosition = isAtTurretPosition();
-        setTurretPosition();
+        rightTurretServo.setPosition(targetTurretAngle);
+        leftTurretServo.setPosition(targetTurretAngle);
     }
 }
