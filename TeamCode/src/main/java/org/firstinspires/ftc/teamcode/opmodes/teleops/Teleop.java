@@ -40,7 +40,6 @@ public class Teleop extends CommandOpMode {
         super.loop();
 
         robot.getLauncherGroup().getLauncher().periodic();
-        robot.getTurret().periodic();
 
         if(gamepad1.rightBumperWasPressed()){
             schedule(robot.getIntake().spinIntake(Intake.IntakeState.FORWARD));
@@ -56,6 +55,14 @@ public class Teleop extends CommandOpMode {
 //        }
         if(gamepad1.rightTriggerWasPressed()){
             schedule(robot.getLauncherGroup().cycle());
+        }
+
+        if(gamepad1.dpadRightWasPressed()){
+            schedule(robot.getTurret().moveTo(1.0));
+        }
+
+        if(gamepad1.dpadLeftWasPressed()){
+            schedule(robot.getTurret().moveTo(0.0));
         }
 
         telemetry.addData("Launcher Velocity", robot.getLauncherGroup().getLauncher().getCurrentVelocity());
