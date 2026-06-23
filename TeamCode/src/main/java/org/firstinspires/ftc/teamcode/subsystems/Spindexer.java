@@ -18,13 +18,13 @@ public class Spindexer {
     private final DigitalChannel magneticSensor;
 
     private static final int FULL_ROTATION_CIRCLE = 1000;
-    private static final int ONE_CHAMBER_DISTANCE = (int) FULL_ROTATION_CIRCLE / 3;
+    private static final int ONE_CHAMBER_DISTANCE = (int) (FULL_ROTATION_CIRCLE / 3);
 
-    private static final double RIGHT_TRIGGER_OPEN_POSITION = 0;
-    private static final double RIGHT_TRIGGER_CLOSE_POSITION = 0;
+    private static final double RIGHT_TRIGGER_OPEN_POSITION = 0.94;
+    private static final double RIGHT_TRIGGER_CLOSE_POSITION = 0.46;
 
-    private static final double LEFT_TRIGGER_OPEN_POSITION = 0;
-    private static final double LEFT_TRIGGER_CLOSE_POSITION = 0;
+    private static final double LEFT_TRIGGER_OPEN_POSITION = 0.53;
+    private static final double LEFT_TRIGGER_CLOSE_POSITION = 0.02;
 
     public Spindexer(HardwareMap hardwareMap){
         spindexerMotor = hardwareMap.get(DcMotorEx.class, "spindexerMotor");
@@ -47,6 +47,7 @@ public class Spindexer {
                 .setStart(() -> {
                     int target = spindexerMotor.getCurrentPosition() + (numberTimes * ONE_CHAMBER_DISTANCE);
                     spindexerMotor.setTargetPosition(target);
+                    spindexerMotor.setPower(0.7);
                 })
                 .setDone(this::isAtCorrectPosition);
     }

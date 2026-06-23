@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.subsystems.launcher;
 
 import com.pedropathing.ivy.Command;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 public class LauncherHood {
@@ -25,11 +24,11 @@ public class LauncherHood {
                 .requiring(launcherHoodServo);
     }
 
-    public Command openLauncherGate(){
+    public Command openLauncherHood(){
         return setServoPosition(hoodOpenLimit);
     }
 
-    public Command closeLauncherGate(){
+    public Command closeLauncherHood(){
         return setServoPosition(hoodCloseLimit);
     }
 

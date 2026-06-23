@@ -26,6 +26,7 @@ public class LauncherGroup {
                 launcherGate.openLauncherGate(),
                 spindexer.openTriggers(),
                 launcher.setVelocity(1000),
+                waitUntil(() -> launcher.atTargetVelocity(1000)),
                 spindexer.spinChambers(6),
                 waitMs(300),
                 spindexer.closeTriggers(),

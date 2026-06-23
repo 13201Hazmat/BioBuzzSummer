@@ -43,7 +43,7 @@ public class Turret {
     }
 
     public boolean isAtTurretPosition(){
-        if(Math.abs(rightTurretServo.getPosition() - targetTurretAngle) < tolerance && Math.abs(leftTurretServo.getPosition()) - targetTurretAngle < tolerance){
+        if(Math.abs(rightTurretServo.getPosition() - targetTurretAngle) < tolerance && Math.abs(leftTurretServo.getPosition() - targetTurretAngle) < tolerance){
             isAtCorrectTurretPosition = true;
             return true;
         }
