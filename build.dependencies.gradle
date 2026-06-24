@@ -28,12 +28,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
 
-    //NextFTC
-    implementation 'dev.nextftc:ftc:1.1.0'
-    implementation 'dev.nextftc:hardware:1.1.0'
-    implementation 'dev.nextftc:control:1.0.0'
-    implementation 'dev.nextftc:bindings:1.0.1'
-    implementation 'dev.nextftc.extensions:pedro:1.0.0'
+    //Ivy
+    implementation 'com.pedropathing:ivy:1.0.0'
 
     //Pedro
     implementation 'com.pedropathing:ftc:2.1.2'
